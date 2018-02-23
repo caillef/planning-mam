@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Planning MAM</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://unpkg.com/vue"></script>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid Sans">
+    </head>
+    <body>
+        <div id="app">
+            <month></month>
+        </div>
+    </body>
+    <footer>
+        
+        <script type="text/x-template" id="month-template">
+            <div>
+                <h1 id="month"> Février </h1>
+                <div v-for="(d,i) in weeks">
+                    <week :days="d" :index="i"></week>
+                </div>
+            </div>
+
+        </script>
+
+        <script type="text/x-template" id="week-template">
+            <div>
+                <div v-for="day in days" class="days">
+                    <day-component :if="day !== undefined" :index="index" :children="day.child_days"></day-component>
+                </div>
+            </div>
+        </script>        
+
+        <script type="text/x-template" id="day-template">
+            <div>
+                <div v-if="children.length > 0">
+                    <h1 id="day_number">
+                        {{ children[0].day }}
+                    </h1>
+                    <morning :children="children" :index="index" :isMorning="true"></morning>
+                    <midday></midday>
+                    <afternoon :children="children" :index="index" :isMorning="false"></afternoon>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/x-template" id="day-part-template">
+            <div>
+                <div v-if="isMorning" v-for="child in children_start" class="hour_cell" v-bind:class="child.am">
+                    {{ child.name + " " + parseHour(child.start)}}
+                </div>
+                <div v-if="!isMorning" v-for="child in children_end" class="hour_cell" v-bind:class="child.am">
+                    {{ child.name + " " + parseHour(child.end)}}
+                </div>
+            </div>
+        </script>
+
+        <script type="text/x-template" id="day-midday-template">
+            <div>
+                <div class="hour_cell"></div>
+                <div class="hour_cell"></div>
+                <div class="hour_cell"></div>
+            </div>
+        </script>
+
+        <script src="js/main.js"></script>
+    </footer>
+</html>

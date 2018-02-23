@@ -1,0 +1,38 @@
+@media print {
+    body {-webkit-print-color-adjust: exact;}
+}
+
+#month {
+    text-align: center
+}
+
+.days {
+    display:inline-block;
+    margin:2px;
+    vertical-align:top;
+}
+
+.hour_cell {
+    padding: 6px;
+    margin: 0;
+    text-align: center;
+    font-family: 'Droid Sans', serif;
+}
+
+#day_number {
+    padding: 4px;
+    margin: 0;
+    text-align: center;
+}
+
+.first {
+    background-color: #7FBF3F
+}
+
+.second {
+    background-color: #3F7FBF
+}
+
+.third {
+    background-color: #BF7F3F
+}
