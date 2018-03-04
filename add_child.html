@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Planning MAM</title>
+    <link rel="stylesheet" href="css/add_child_style.css">
+    <script src="https://unpkg.com/vue"></script>
+
+    <script src="js/vue2-timepicker.min.js"></script>
+    <link href="css/vue2-timepicker.min.css" rel="stylesheet"></link>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid Sans">
+
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <month :weeks="weeks"></month>
+    </div>
+</body>
+
+<footer>
+
+    <script type="text/x-template" id="month-template">
+        <div>
+            <div v-for="week in weeks" class="row">
+                <div class="col-sm-12 col-md-2" v-for="day in week">
+                    <day :day="day"></day>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="day-template">
+        <div class="card">
+            <div class="card-header text-center font-weight-bold">
+                {{ day.day }}
+            </div>
+            <div v-if="day.day.indexOf(' ') !== -1" class="card-body text-center">
+                <vue-timepicker v-model="day.start_time"></vue-timepicker>
+                <vue-timepicker v-model="day.end_time"></vue-timepicker>
+                <!-- <vue-timepicker v-model="day.start_time" @change="dateStartChangeHandler($event, day)"></vue-timepicker>
+                <span>-</span>
+                <vue-timepicker v-model="day.end_time" @change="dateEndChangeHandler($event, day)"></vue-timepicker> -->
+            </div>
+        </div>
+    </script>
+    
+   <script src=" js/add_child.js "></script>   
+</footer>
+
+</html>

@@ -10,7 +10,7 @@ const MODELS = "./models/"
 const MergedPlanningMonth = require(MODELS + "MergedPlanningMonth");
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + "/planning.html")
+  res.sendFile(__dirname + "/add_child.html")
 })
 
 app.get('/api/v1/planning', function (req, res) {
